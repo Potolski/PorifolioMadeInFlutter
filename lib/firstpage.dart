@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({
@@ -17,8 +16,7 @@ class FirstPage extends StatelessWidget {
                 style: TextStyle(color: Colors.red, fontSize: 60))),
       ),
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Login()));
+        Navigator.pushReplacementNamed(context, "/mainpage");
       },
     ));
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'firstpage.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -32,8 +31,7 @@ class _LoginState extends State<Login> {
     form.save();
     if (form.validate() && _username == "123" && _password == "302") {
       print('Form is valid');
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => FirstPage()));
+      Navigator.pushReplacementNamed(context, "/mainpage");
     } else {
       print('Form is invalid');
     }
