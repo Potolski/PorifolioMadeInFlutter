@@ -1,8 +1,20 @@
-# Simple Flutter login page
+# Youtube copy
 
-This is a simple 2 page app that people can use to get started with Flutter.
+This project started as a simple login page but then I got excited and wanted to add youtube in the middle.
 
-The first page contains just a text and when clicked, the second page opens.
+It contains 3 screens:
 
-The second page is a "Login page". Its only funcionality is pressing the button
-and going to the first page again.
+- Simple page with a text
+- Youtube's mobile copy
+- Login page with hardcoded auth (username: 123 and password: 302)
+
+## Souces:
+
+- [youtube_player_flutter](https://pub.dev/packages/youtube_player_flutter)
+- [http](https://pub.dev/packages/http)
+
+- [Youtube Api documentation](https://developers.google.com/youtube/v3/docs)
+
+## Obs.:
+
+The API key can be generated [here](https://console.developers.google.com/?pli=1)
