@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'firstpage.dart';
-import 'mainpage.dart';
-import 'login.dart';
+import 'screens/login.dart';
+import 'screens/youtube.dart';
+import 'screens/firstpage.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(primaryColor: Colors.purple),
         home: FirstPage(),
         routes: {
-          "/mainpage": (context) => MainPage(),
+          "/mainpage": (context) => Youtube(),
           "/login": (context) => Login(),
           "/firstpage": (context) => FirstPage(),
         });
