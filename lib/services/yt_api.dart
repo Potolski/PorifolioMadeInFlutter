@@ -6,32 +6,38 @@ import 'package:teste/models/videos.dart';
 
 class APIService {
   APIService._instantiate();
-
+  //singleton
   static final APIService instance = APIService._instantiate();
 
+  // google api base url
   final String _baseUrl = 'www.googleapis.com';
   String _nextPageToken = '';
 
+  // creates a list of videos from the API requests
   Future<List<Video>> getVideo(String playlistId) async {
+    // creates the paramenters we will need to add on the API call
     Map<String, String> parameters = {
       'part': 'snippet',
       'playlistId': playlistId,
-      'maxResults': '8',
+      'maxResults': '10',
       'pageToken': _nextPageToken,
       'key': YT_API_KEY,
     };
 
+    // Creates the full call
     Uri uri = Uri.https(
       _baseUrl,
       '/youtube/v3/playlistItems',
       parameters,
     );
 
+    // creates the headers for the http request
     Map<String, String> headers = {
       HttpHeaders.contentTypeHeader: 'application/json',
     };
 
     var response = await http.get(uri, headers: headers);
+    // status 200 means OK
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
 
