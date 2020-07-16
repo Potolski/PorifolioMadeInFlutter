@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/login.dart';
-import 'screens/youtube.dart';
+import 'screens/screencontroler.dart';
 import 'screens/firstpage.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(primaryColor: Colors.purple),
         home: FirstPage(),
         routes: {
-          "/mainpage": (context) => Youtube(),
+          "/mainscreen": (context) => MainScreen(),
           "/login": (context) => Login(),
           "/firstpage": (context) => FirstPage(),
         });

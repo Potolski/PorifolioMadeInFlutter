@@ -27,15 +27,14 @@ class _Youtube extends State<Youtube> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.black26,
-        bottomNavigationBar: BottomBar(),
-        body: CustomScrollView(
+    return Container(
+        color: Colors.black26,
+        child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              title: Text("Cralson", style: TextStyle(color: Colors.white)),
+              title: Text("DvD", style: TextStyle(color: Colors.white)),
               backgroundColor: Colors.black26,
-              iconTheme: IconThemeData(color: Colors.grey[700]),
+              iconTheme: IconThemeData(color: Colors.yellow),
               actions: [
                 IconButton(
                   icon: Icon(Icons.person),
@@ -59,7 +58,6 @@ class _Youtube extends State<Youtube> {
                       alignment: Alignment.center,
                       color: Colors.grey[700],
                       child: Image(
-                        fit: BoxFit.fitWidth,
                         image: NetworkImage(video.thumbnailUrl),
                       ),
                     );
@@ -68,54 +66,5 @@ class _Youtube extends State<Youtube> {
                 )),
           ],
         ));
-  }
-}
-
-class BottomBar extends StatelessWidget {
-  const BottomBar({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      backgroundColor: Colors.black26,
-      selectedItemColor: Colors.red,
-      type: BottomNavigationBarType.fixed,
-      items: [
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: Colors.grey[700],
-            ),
-            title: Text("Home", style: TextStyle(color: Colors.grey[700]))),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.explore,
-              color: Colors.grey[700],
-            ),
-            title: Text("Explore", style: TextStyle(color: Colors.grey[700]))),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.subscriptions,
-              color: Colors.grey[700],
-            ),
-            title: Text("Subscriptions",
-                style: TextStyle(
-                    color: Colors.grey[700], fontSize: 11, height: 1.4))),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.mail,
-              color: Colors.grey[700],
-            ),
-            title: Text("Inbox", style: TextStyle(color: Colors.grey[700]))),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.video_library,
-              color: Colors.grey[700],
-            ),
-            title: Text("Library", style: TextStyle(color: Colors.grey[700]))),
-      ],
-    );
   }
 }

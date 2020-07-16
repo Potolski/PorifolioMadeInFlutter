@@ -12,11 +12,11 @@ class FirstPage extends StatelessWidget {
       child: Container(
         color: Colors.black,
         child: Center(
-            child: Text("Dalson",
-                style: TextStyle(color: Colors.red, fontSize: 60))),
+            child: Text("Wake",
+                style: TextStyle(color: Colors.yellow, fontSize: 60))),
       ),
       onTap: () {
-        Navigator.pushReplacementNamed(context, "/mainpage");
+        Navigator.pushReplacementNamed(context, "/mainscreen");
       },
     ));
   }
