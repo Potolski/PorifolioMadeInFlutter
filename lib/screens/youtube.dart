@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:teste/models/videos.dart';
+import 'package:teste/services/yt_api.dart';
 
 class Youtube extends StatefulWidget {
   @override
@@ -7,6 +9,22 @@ class Youtube extends StatefulWidget {
 }
 
 class _Youtube extends State<Youtube> {
+  List<Video> _videos;
+
+  @override
+  void initState() {
+    super.initState();
+    _initVideos();
+  }
+
+  _initVideos() async {
+    List<Video> videos = await APIService.instance
+        .getVideo("PLRAakQEiXFeMVPXsZozMoU6RKvV4wz3EF");
+    setState(() {
+      _videos = videos;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,12 +54,17 @@ class _Youtube extends State<Youtube> {
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
+                    Video video = _videos[index];
                     return Container(
-                        alignment: Alignment.center,
-                        color: Colors.grey[700],
-                        child: Text("Video $index"));
+                      alignment: Alignment.center,
+                      color: Colors.grey[700],
+                      child: Image(
+                        fit: BoxFit.fitWidth,
+                        image: NetworkImage(video.thumbnailUrl),
+                      ),
+                    );
                   },
-                  childCount: 20,
+                  childCount: _videos.length,
                 )),
           ],
         ));
