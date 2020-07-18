@@ -10,6 +10,7 @@ class Youtube extends StatefulWidget {
 
 class _Youtube extends State<Youtube> {
   List<Video> _videos;
+  bool _loading = false;
 
   @override
   void initState() {
@@ -18,53 +19,63 @@ class _Youtube extends State<Youtube> {
   }
 
   _initVideos() async {
+    _loading = true;
     List<Video> videos = await APIService.instance
         .getVideo("PLRAakQEiXFeMVPXsZozMoU6RKvV4wz3EF");
     setState(() {
       _videos = videos;
     });
+    _loading = false;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.black26,
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              title: Text("DvD", style: TextStyle(color: Colors.white)),
-              backgroundColor: Colors.black26,
-              iconTheme: IconThemeData(color: Colors.yellow),
-              actions: [
-                IconButton(
-                  icon: Icon(Icons.person),
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, "/login");
-                  },
-                )
-              ],
-            ),
-            SliverGrid(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 400,
-                  mainAxisSpacing: 70,
-                  crossAxisSpacing: 30,
-                  childAspectRatio: 1.7,
+    return _videos != null
+        ? Container(
+            color: Colors.black26,
+            child: CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  title: Text("DvD", style: TextStyle(color: Colors.white)),
+                  backgroundColor: Colors.black26,
+                  iconTheme: IconThemeData(color: Colors.yellow),
+                  actions: [
+                    IconButton(
+                      icon: Icon(Icons.person),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, "/login");
+                      },
+                    )
+                  ],
                 ),
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    Video video = _videos[index];
-                    return Container(
-                      alignment: Alignment.center,
-                      color: Colors.grey[700],
-                      child: Image(
-                        image: NetworkImage(video.thumbnailUrl),
-                      ),
-                    );
-                  },
-                  childCount: _videos.length,
-                )),
-          ],
-        ));
+                SliverGrid(
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 400,
+                      mainAxisSpacing: 70,
+                      crossAxisSpacing: 30,
+                      childAspectRatio: 1.7,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        Video video = _videos[index];
+                        return Container(
+                          alignment: Alignment.center,
+                          color: Colors.grey[700],
+                          child: Image(
+                            image: NetworkImage(video.thumbnailUrl),
+                          ),
+                        );
+                      },
+                      childCount: _videos.length,
+                    )),
+              ],
+            ))
+        : Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                Colors.yellow, // Red
+              ),
+            ),
+          );
   }
 }
