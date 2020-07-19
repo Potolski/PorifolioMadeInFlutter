@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:teste/screens/youtube.dart';
+import 'package:teste/screens/youtubevideos.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -17,48 +17,67 @@ class _MainScreen extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black26,
-      bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.black26,
-        selectedItemColor: Colors.red,
-        type: BottomNavigationBarType.fixed,
-        selectedIconTheme: IconThemeData(color: Colors.yellow),
-        unselectedItemColor: Colors.grey[700],
-        currentIndex: _currentIndex,
-        onTap: onTabTapped,
-        items: [
-          BottomNavigationBarItem(
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.black26,
+          selectedItemColor: Colors.red,
+          type: BottomNavigationBarType.fixed,
+          selectedIconTheme: IconThemeData(color: Colors.yellow),
+          unselectedItemColor: Colors.grey[700],
+          currentIndex: _currentIndex,
+          onTap: onTabTapped,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                ),
+                title: Text("Home", style: TextStyle(color: Colors.grey[700]))),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.explore,
+                ),
+                title:
+                    Text("Explore", style: TextStyle(color: Colors.grey[700]))),
+            BottomNavigationBarItem(
               icon: Icon(
-                Icons.home,
+                Icons.subscriptions,
               ),
-              title: Text("Home", style: TextStyle(color: Colors.grey[700]))),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.explore,
-              ),
-              title:
-                  Text("Explore", style: TextStyle(color: Colors.grey[700]))),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.subscriptions,
+              title: Text("Youtube", style: TextStyle(color: Colors.grey[700])),
             ),
-            title: Text("Youtube", style: TextStyle(color: Colors.grey[700])),
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.mail,
-              ),
-              title: Text("Inbox", style: TextStyle(color: Colors.grey[700]))),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.video_library,
-              ),
-              title:
-                  Text("Library", style: TextStyle(color: Colors.grey[700]))),
-        ],
-      ),
-      body: _children[_currentIndex],
-    );
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.mail,
+                ),
+                title:
+                    Text("Inbox", style: TextStyle(color: Colors.grey[700]))),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.video_library,
+                ),
+                title:
+                    Text("Library", style: TextStyle(color: Colors.grey[700]))),
+          ],
+        ),
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              title: Text("DvD", style: TextStyle(color: Colors.white)),
+              backgroundColor: Colors.black26,
+              iconTheme: IconThemeData(color: Colors.yellow),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.person),
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, "/login");
+                  },
+                )
+              ],
+            ),
+            SliverFillRemaining(
+              child: _children[_currentIndex],
+            )
+          ],
+        ));
   }
 
   void onTabTapped(int index) {
