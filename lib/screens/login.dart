@@ -31,7 +31,7 @@ class _LoginState extends State<Login> {
     form.save();
     if (form.validate() && _username == "123" && _password == "302") {
       print('Form is valid');
-      Navigator.pushReplacementNamed(context, "/mainpage");
+      Navigator.pushReplacementNamed(context, "/mainscreen");
     } else {
       print('Form is invalid');
     }
