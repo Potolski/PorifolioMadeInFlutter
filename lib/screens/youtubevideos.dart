@@ -33,6 +33,19 @@ class _Youtube extends State<Youtube> {
             color: Colors.black26,
             child: CustomScrollView(
               slivers: [
+                SliverAppBar(
+                  title: Text("DvD", style: TextStyle(color: Colors.white)),
+                  backgroundColor: Colors.black26,
+                  iconTheme: IconThemeData(color: Colors.yellow),
+                  actions: [
+                    IconButton(
+                      icon: Icon(Icons.person),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, "/login");
+                      },
+                    )
+                  ],
+                ),
                 SliverGrid(
                     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 400,
@@ -73,8 +86,9 @@ class _Youtube extends State<Youtube> {
                                     padding: const EdgeInsets.all(10.0),
                                     child: Text(
                                       video.title,
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 15),
+                                          color: Colors.white, fontSize: 20),
                                     ),
                                   ),
                                 ),
