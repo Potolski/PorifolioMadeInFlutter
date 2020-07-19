@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/login.dart';
 import 'screens/screencontroler.dart';
-import 'screens/firstpage.dart';
+import 'screens/firstscreen.dart';
 
 void main() {
   runApp(MyApp());

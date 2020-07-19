@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+
+import 'package:teste/screens/github.dart';
+import 'package:teste/screens/linkedin.dart';
+import 'package:teste/screens/medium.dart';
 import 'package:teste/screens/youtubevideos.dart';
 
 class MainScreen extends StatefulWidget {
@@ -9,8 +14,11 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreen extends State<MainScreen> {
   final List<Widget> _children = [
-    Youtube(),
     Container(color: Colors.red),
+    LinkedInScreen(),
+    GithubScreen(),
+    MediumScreen(),
+    Youtube(),
   ];
   int _currentIndex = 0;
 
@@ -29,32 +37,32 @@ class _MainScreen extends State<MainScreen> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.home,
-              ),
-              title: Text("Home", style: TextStyle(color: Colors.grey[700]))),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.explore,
+                FlutterIcons.ios_person_ion,
               ),
               title:
-                  Text("Explore", style: TextStyle(color: Colors.grey[700]))),
+                  Text("About me", style: TextStyle(color: Colors.grey[700]))),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.subscriptions,
+              FlutterIcons.linkedin_square_ant,
             ),
-            title: Text("Youtube", style: TextStyle(color: Colors.grey[700])),
+            title: Text("LinkedIn", style: TextStyle(color: Colors.grey[700])),
           ),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.mail,
+                FlutterIcons.github_ant,
               ),
-              title: Text("Inbox", style: TextStyle(color: Colors.grey[700]))),
+              title: Text("Github", style: TextStyle(color: Colors.grey[700]))),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.video_library,
+                FlutterIcons.medium_monogram_ant,
+              ),
+              title: Text("Medium", style: TextStyle(color: Colors.grey[700]))),
+          BottomNavigationBarItem(
+              icon: Icon(
+                FlutterIcons.youtube_ant,
               ),
               title:
-                  Text("Library", style: TextStyle(color: Colors.grey[700]))),
+                  Text("Youtube", style: TextStyle(color: Colors.grey[700]))),
         ],
       ),
       body: _children[_currentIndex],
